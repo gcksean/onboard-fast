@@ -1,10 +1,10 @@
 # Onboard-Fast
 
-Personal onboarding knowledge base for capturing what you learn at a new job and making it easy to retrieve later.
+Personal onboarding knowledge base for capturing what you learn when joining any new context—new jobs, role switches, team transfers, or new projects—and making it easy to retrieve later.
 
 ## Purpose
 
-This repo is a living system for storing notes in four buckets:
+This repo is a living system for storing notes in four buckets, so you can onboard faster whenever your scope changes:
 - `resources` — links, tools, systems, access pointers, credential metadata
 - `concepts` — technical/tribal/domain understanding
 - `procedures` — repeatable step-by-step guides
