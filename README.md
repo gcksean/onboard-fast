@@ -43,9 +43,11 @@ Claude Code root convention:
 
 ## Daily Workflow
 
-1. Paste new info into your agent (Copilot/Claude CLI).
-2. Agent classifies and merges/creates an entry in the best-fit bucket.
-3. Agent updates the bucket `INDEX.md`.
+1. Ask a question **or** paste new info into your agent (Copilot/Claude CLI).
+2. Agent detects intent:
+   - **Ask mode:** search relevant bucket entries and answer from existing knowledge.
+   - **Capture mode:** classify and merge/create an entry in the best-fit bucket.
+3. For Capture mode, agent updates the relevant `INDEX.md`.
 4. If unresolved, it goes to `questions`.
 5. When answered, the question is updated and durable details are propagated to `resources`, `concepts`, and/or `procedures`.
 
@@ -70,5 +72,6 @@ Claude Code root convention:
 
 Use these project skills to keep ingestion consistent:
 - [`skills/classifying-intake/SKILL.md`](skills/classifying-intake/SKILL.md)
+- [`skills/searching-answers/SKILL.md`](skills/searching-answers/SKILL.md)
 - [`skills/updating-indexes/SKILL.md`](skills/updating-indexes/SKILL.md)
 - [`skills/resolving-questions/SKILL.md`](skills/resolving-questions/SKILL.md)

@@ -1,7 +1,12 @@
 # AGENTS
 
 This repository is a **personal onboarding knowledge base**.  
-When new content is pasted to an agent, the agent must classify and store it in one of four buckets:
+When content is sent to an agent, it must first detect intent:
+
+1. **Ask mode** (user is asking a question): search and answer from existing knowledge.
+2. **Capture mode** (user is providing notes/info): classify and store in one of four buckets.
+
+In Capture mode, classify into:
 
 1. `resources` — links, tools, pages, systems, credentials metadata, and access pointers.
 2. `concepts` — durable knowledge (technical, tribal, organizational) by topic.
@@ -10,15 +15,38 @@ When new content is pasted to an agent, the agent must classify and store it in 
 
 ## Core Operating Rules
 
-1. **Classify first, then write.** If classification is ambiguous, ask one focused clarification.
-2. **Update existing entries when possible.** Do not create duplicates when an existing entry can be merged.
-3. **Use frontmatter metadata** so entries remain searchable and maintainable.
-4. **Questions are temporary.** If a question gets answered:
+1. **Detect intent first.** Decide Ask mode vs Capture mode before any write action.
+2. **Ask mode is read-first.** Search relevant buckets and answer from existing entries when possible.
+3. **Capture mode writes.** Classify first, then write/update.
+4. If classification is ambiguous, ask one focused clarification.
+5. **Update existing entries when possible.** Do not create duplicates when an existing entry can be merged.
+6. **Use frontmatter metadata** so entries remain searchable and maintainable.
+7. **Questions are temporary.** If a question gets answered:
    - update the question entry with the answer and status,
    - propagate durable details into `resources`, `concepts`, and/or `procedures`,
    - link all related updates.
-5. **Always refresh bucket indexes** after create/update actions.
-6. **Credentials policy:** encrypted credential blobs are allowed; plaintext credentials are not.
+8. **Always refresh bucket indexes** after create/update actions.
+9. **Credentials policy:** encrypted credential blobs are allowed; plaintext credentials are not.
+
+## Ask Mode (Search + Answer)
+
+When the user asks a question:
+1. Parse the question and extract key terms.
+2. Search across all four buckets (`resources`, `concepts`, `procedures`, `questions`) and their indexes.
+3. Prioritize direct procedural answers from `procedures`, then explanatory support from `concepts`, then pointers from `resources`.
+4. Include unresolved context from `questions` only when relevant.
+5. Return the best answer with links to source entries.
+6. If no reliable answer exists, say so clearly and suggest capturing it as a new question entry.
+
+## Capture Mode (Classify + Store)
+
+When the user pastes new information:
+1. Parse intent and classify to a bucket.
+2. Locate related entry candidates in that bucket.
+3. Merge or create entry with correct metadata.
+4. If unresolved, write/update under `questions`.
+5. If answered, propagate durable learnings into other buckets.
+6. Update relevant `INDEX.md` files.
 
 ## Repository Shape
 
@@ -54,19 +82,10 @@ Bucket-specific fields:
 - `procedures`: `owner`, `prerequisites`, `systems`, `validation`
 - `questions`: `asked_by`, `answer_status`, `answered_on`, `linked_updates`
 
-## Ingestion Flow (for Copilot/Claude CLI usage)
-
-When a user pastes content:
-1. Parse intent and classify to a bucket.
-2. Locate related entry candidates in that bucket.
-3. Merge or create entry with correct metadata.
-4. If unresolved, write/update under `questions`.
-5. If answered, propagate durable learnings into other buckets.
-6. Update relevant `INDEX.md` files.
-
 ## Suggested Skill Usage
 
 - `skills/classifying-intake/SKILL.md`
+- `skills/searching-answers/SKILL.md`
 - `skills/updating-indexes/SKILL.md`
 - `skills/resolving-questions/SKILL.md`
 

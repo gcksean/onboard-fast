@@ -3,6 +3,7 @@
 Use the canonical skills in the repository root:
 
 - `../skills/classifying-intake/SKILL.md`
+- `../skills/searching-answers/SKILL.md`
 - `../skills/updating-indexes/SKILL.md`
 - `../skills/resolving-questions/SKILL.md`
 
